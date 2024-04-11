@@ -1,0 +1,17 @@
+ [
+        {
+            "name": "Арбуз",
+            "price": 5,
+            "image": "https://img.lovepik.com/free-png/20220127/lovepik-summer-watermelon-png-image_401955803_wh1200.png"
+        },
+        {
+            "name": "Дыня",
+            "price": 4,
+            "image": "https://pngicon.ru/file/uploads/dynja.png"
+        },
+        {
+            "name": "Кокос",
+            "price": 9,
+            "image": "https://pngimg.com/uploads/coconut/coconut_PNG9136.png"
+        }
+    ]
