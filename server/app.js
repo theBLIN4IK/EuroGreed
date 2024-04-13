@@ -19,32 +19,48 @@ app.use(bodyParser.json())
 
 mongoose.connect(process.env.MONGO_URI)
 
-// получение всех пользователей из БД
+//
 app.get('/getProducts', async (req, res) => {
 	try {
-		const products = await productsModel.find({})
-		res.send(products)
+	  const products = await productsModel.find({})
+	  products.forEach(async product => {
+		if(product.showDiscount) {
+		  product.discountPrice = product.price * 0.75
+		} else {
+		  product.discountPrice = product.price
+		}
+		
+		await product.save()
+	  })
+	  res.send(products)
 	} catch (err) {
-		console.error('Произошла ошибка', err)
-		res.send({ error: 'Произошла ошибка', err })
+	  console.error('Произошла ошибка', err)
+	  res.status(500).send({ error: 'Произошла ошибка при получении продуктов', err })
 	}
-})
+  })
 
 
-app.post('/addProducts', async (req, res) => {
+
+  app.post('/addProducts', async (req, res) => {
 	try {
 	  const { name, price, image } = req.body
-	  const newProduct = { name, price, image }
+	  const randomlySelected = Math.random() < 0.5
+	  const newProduct = {
+		name,
+		price,
+		image,
+		showDiscount: randomlySelected 
+	  };
 	  await productsModel.create(newProduct)
 	  res.send({ message: 'успешно' })
 	} catch (err) {
-		console.error('Произошла ошибка при добавлении', err)
-		res.send({
-			error: `Произошла ошибка при добавлении ${err}`
-		})
+	  console.error('Произошла ошибка при добавлении', err)
+	  res.send({ error: `Произошла ошибка при добавлении: ${err}` })
 	}
-})
+  });
   
+  
+
 
 app.listen(port, () => {
 	console.log(`Сервер запущен на порту ${port}`)

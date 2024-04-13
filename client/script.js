@@ -35,40 +35,36 @@ async function loadAndDisplayProducts() {
   req1.addEventListener('click', loadAndDisplayProducts)
   
 const sales = document.querySelector('.sales')
+
+
+
+
 //saaaaleeee
 req3.addEventListener('click', async () => {
-    window.scrollTo({
-        top: document.body.scrollHeight,
-        behavior: 'smooth'
-    });
+  window.scrollTo({
+    top: document.body.scrollHeight,
+    behavior: 'smooth'
+  })
 
-    try {
-        const productsData = await getData('http://localhost:3002/getProducts')
+  try {
+	  const json = await getData('http://localhost:3002/getProducts')
+	  sales.innerHTML = ''
+    const discountedProducts = json.filter(product => product.showDiscount)
+	  discountedProducts.reverse().forEach(product => {
+		sales.insertAdjacentHTML('beforeend',
+		  `<li>
+		   <img src="${product.image}" class="image"> 
+		   <p class="name">${product.name}</p>
+		   <p class="price1">${product.discountPrice} byn</p>
+       <p class="price2">${product.price} byn</p>
+		   </li>`
+		)
+	  })
+	} catch (err) {
+	  console.error('An error occurred', err)
+	}
+})
 
-        const randomIndexes = []
-        while (randomIndexes.length < 4) {
-            const randomIndex = Math.floor(Math.random() * productsData.length)
-            if (!randomIndexes.includes(randomIndex)) {
-                randomIndexes.push(randomIndex)
-            }
-        }
-
-        randomIndexes.forEach(index => {
-            const product = productsData[index]
-            sales.insertAdjacentHTML('beforeend',
-                `<li>
-                   <img src="${product.image}" class="image"> 
-                   <p class="name">${product.name}</p>
-                   <p class="price2">${product.price} byn</p>
-				   <p class="lowprice">${product.price * 0.75} byn</p>
-                 </li>`
-            )
-        })
-
-    } catch (err) {
-        console.error('An error occurred', err)
-    }
-});
 
 //! POST
 const postData = (url, data) => {
