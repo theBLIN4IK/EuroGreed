@@ -11,7 +11,7 @@ const app = express()
 
 app.use(
 	cors({
-		origin: ['https://eurogreedserver.onrender.com'],
+		origin: ['https://eurogreed.onrender.com/'],
 		methods: 'GET, PATCH, POST, DELETE'
 	})
 )
