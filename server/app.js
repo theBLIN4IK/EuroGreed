@@ -6,7 +6,7 @@ const productsModel = require('./models/productsModel')
 
 require('dotenv').config()
 
-const port = process.env.PORT || 3002
+const port = process.env.PORT || 10000
 const app = express()
 
 app.use(
