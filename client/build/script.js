@@ -16,7 +16,7 @@ const products = document.querySelector('.products')
 
 async function loadAndDisplayProducts() {
 	try {
-	  const json = await getData('http://localhost:10000/getProducts')
+	  const json = await getData('https://eurogreedserver.onrender.com/getProducts')
 	  products.innerHTML = '';
 	  json.reverse().forEach(product => {
 		products.insertAdjacentHTML('beforeend',
@@ -47,7 +47,7 @@ req3.addEventListener('click', async () => {
   })
 
   try {
-	  const json = await getData('http://localhost:10000/getProducts')
+	  const json = await getData('https://eurogreedserver.onrender.com/getProducts')
 	  sales.innerHTML = ''
     const discountedProducts = json.filter(product => product.showDiscount)
 	  discountedProducts.reverse().forEach(product => {
@@ -109,7 +109,7 @@ const postData = (url, data) => {
 	let image = imgblock.src
 	try {
 	  let product = { name, price, image }
-	  await postData('http://localhost:10000/addProducts', product)
+	  await postData('https://eurogreedserver.onrender.com/addProducts', product)
 	  intxt.value = ''
       innum.value = ''
       imgblock.src = 'https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM='
