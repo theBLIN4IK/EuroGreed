@@ -1,6 +1,15 @@
 async function getsale() {
     const req3 = document.querySelector('.sale')
 
+    const getData = url => {
+        return new Promise((resolve, reject) =>
+          fetch(url)
+            .then(response => response.json())
+            .then(json => resolve(json))
+            .catch(error => reject(error))
+        )
+      }
+
 const sales = document.querySelector('.sales')
 req3.addEventListener('click', async () => {
   window.scrollTo({
