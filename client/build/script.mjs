@@ -1,8 +1,8 @@
 const req1 = document.querySelector('.get')
 
 // GET
-import loadAndDisplayProducts from "./get.mjs"
-req1.addEventListener('click', loadAndDisplayProducts)
+import justget from "./get.mjs"
+req1.addEventListener('click', justget)
   
 
 //saaaaleeee

@@ -1,3 +1,4 @@
+async function justget() {
 const getData = url => {
     return new Promise((resolve, reject) =>
       fetch(url)
@@ -26,4 +27,5 @@ const getData = url => {
         console.error('An error occurred', err)
       }
     }
-  export default loadAndDisplayProducts
+}
+  export default justget
