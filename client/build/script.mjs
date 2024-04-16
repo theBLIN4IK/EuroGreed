@@ -1,4 +1,3 @@
-const req1 = document.querySelector('.get')
 
 // GET
 import justget from "./get.mjs"

@@ -1,4 +1,5 @@
 async function justget() {
+  const req1 = document.querySelector('.get')
 const getData = url => {
     return new Promise((resolve, reject) =>
       fetch(url)
@@ -27,6 +28,6 @@ const getData = url => {
         console.error('An error occurred', err)
       }
     }
-    eq1.addEventListener('click', loadAndDisplayProducts)
+    req1.addEventListener('click', loadAndDisplayProducts)
 }
   export default justget
