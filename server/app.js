@@ -19,17 +19,18 @@ app.use(bodyParser.json())
 
 mongoose.connect(process.env.MONGO_URI)
 
-//
+
+//получение продуктов
 app.get('/getProducts', async (req, res) => {
 	try {
 	  const products = await productsModel.find({})
+	  //отображение скидочного / обычногг ценника
 	  products.forEach(async product => {
 		if(product.showDiscount) {
 		  product.discountPrice = product.price * 0.75
 		} else {
 		  product.discountPrice = product.price
 		}
-		
 		await product.save()
 	  })
 	  res.send(products)
@@ -40,10 +41,11 @@ app.get('/getProducts', async (req, res) => {
   })
 
 
-
+//добавление продуктов
   app.post('/addProducts', async (req, res) => {
 	try {
 	  const { name, price, image } = req.body
+	  //генирация скидки при добавлении (я считаю так верно)
 	  const randomlySelected = Math.random() < 0.5
 	  const newProduct = {
 		name,
@@ -60,6 +62,7 @@ app.get('/getProducts', async (req, res) => {
   })
   
   
+  //обнуление скидок
   app.patch('/setDiscount', async (req, res) => {
 	try {
 	  await productsModel.updateMany({}, { showDiscount: false })
@@ -75,73 +78,3 @@ app.get('/getProducts', async (req, res) => {
 app.listen(port, () => {
 	console.log(`Сервер запущен на порту ${port}`)
 })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//app.delete('/deleteUser/:name', async (req, res) => {
-//	try {
-//	  const { name } = req.params;
-//	  const deletedUser = await UserModel.findOneAndDelete({ name });
-//  
-//	  if (!deletedUser) {
-//		return res.status(404).send({ message: 'Пользователь не найден' });
-//	  }
-//  
-//	  res.send({ message: 'Пользователь успешно удален' });
-//	} catch (err) {
-//	  console.error('Произошла ошибка при удалении пользователя', err);
-//	  res.status(500).send({
-//		error: `Произошла ошибка при удалении пользователя ${err}`,
-//	  });
-//	}
-//  });
-//  
-
-
-
-
-
-
-
-// редактирование пользователя в БД
-//app.patch('/editUser/:name', async (req, res) => {
-//	try {
-//		const { name } = req.params
-//		const { newName, newEmail, newPassword } = req.body
-//		const user = await UserModel.findOne({ name })
-//		if (user) {
-//			user.name = newName
-//			user.email = newEmail
-//			user.password = newPassword
-//		}
-//		await user.save()
-//		res.send({ message: 'Пользователь успешно отредактирован' })
-//	} catch (err) {
-//		console.error('Произошла ошибка при редактировании пользователя', err)
-//		res.send({
-//			error: `Произошла ошибка при редактировании пользователя ${err}`
-//		})
-//	}
-//})
-//
-//

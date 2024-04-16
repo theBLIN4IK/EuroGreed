@@ -1,5 +1,5 @@
 async function post() {
-    const req2 = document.querySelector('.add')
+const req2 = document.querySelector('.add')
 
 const postData = (url, data) => {
 	return new Promise((resolve, reject) => {
@@ -14,11 +14,10 @@ const postData = (url, data) => {
 		  loadAndDisplayProducts()
 		})
 		.catch(error => reject(error))
-	});
+	})
   }
   
   
-//adding product
   const addblock = document.querySelector('.addblock')
   const imgblock = document.querySelector('.imgblock')
   const intxt = document.querySelector('.intxt')

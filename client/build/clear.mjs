@@ -1,8 +1,6 @@
-
 async function ClearSale() {
 
 const clear = document.querySelector('.clear')
-  
   const patchData = (url, updatedData) => {
 	return new Promise((resolve, reject) =>
 		fetch(`${url}`, {
@@ -16,8 +14,6 @@ const clear = document.querySelector('.clear')
 	)
 }
   
-
-
   clear.addEventListener('click', async () => {
 	try {
 	  let info = await patchData('https://eurogreedserver.onrender.com/setDiscount', {})
@@ -28,4 +24,5 @@ const clear = document.querySelector('.clear')
   })
 
 }
+
 export default ClearSale

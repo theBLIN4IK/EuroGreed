@@ -1,14 +1,13 @@
-
 // GET
 import justget from "./get.mjs"
   justget()	
 
-//saaaaleeee
+//sale
 import getsale from "./getSale.mjs"
 getsale()
 
 
-//! POST
+//POST
 import post from "./post.mjs"
 post()
   

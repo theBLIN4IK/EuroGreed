@@ -11,6 +11,7 @@ async function getsale() {
       }
 
 const sales = document.querySelector('.sales')
+
 req3.addEventListener('click', async () => {
   window.scrollTo({
     top: document.body.scrollHeight,
