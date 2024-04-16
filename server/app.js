@@ -57,10 +57,20 @@ app.get('/getProducts', async (req, res) => {
 	  console.error('Произошла ошибка при добавлении', err)
 	  res.send({ error: `Произошла ошибка при добавлении: ${err}` })
 	}
-  });
+  })
   
   
-
+  app.patch('/setDiscount', async (req, res) => {
+	try {
+	  await productsModel.updateMany({}, { showDiscount: false })
+	  res.send({ message: 'Всем пользователям showDiscount = false' })
+	} catch (err) {
+	  console.error('Произошла ошибка при редактировании', err)
+	  res.status(500).send({
+		error: `Произошла ошибка при редактировании: ${err}`
+	  })
+	}
+  })
 
 app.listen(port, () => {
 	console.log(`Сервер запущен на порту ${port}`)
