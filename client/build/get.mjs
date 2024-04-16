@@ -27,5 +27,6 @@ const getData = url => {
         console.error('An error occurred', err)
       }
     }
+    eq1.addEventListener('click', loadAndDisplayProducts)
 }
   export default justget

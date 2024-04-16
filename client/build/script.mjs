@@ -2,8 +2,7 @@ const req1 = document.querySelector('.get')
 
 // GET
 import justget from "./get.mjs"
-req1.addEventListener('click', justget)
-  
+  justget()	
 
 //saaaaleeee
 import getsale from "./getSale.mjs"
